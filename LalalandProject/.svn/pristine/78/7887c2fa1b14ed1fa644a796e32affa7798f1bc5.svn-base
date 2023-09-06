@@ -1,0 +1,53 @@
+package cmt.controller;
+
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import cmt.service.CmtPayService;
+import cmt.service.CmtService;
+import cmt.vo.CmtPayVO;
+
+@WebServlet(value = "/cmt/cmtPay.do")
+public class CmtPayController extends HttpServlet {
+
+    CmtService cmtService = CmtService.getInstance();
+    CmtPayService cmtPayService = CmtPayService.getInstance();
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String cmtpCd = request.getParameter("cmtpCd");
+        String cmtpMh = request.getParameter("cmtpMh");
+        int cmtpSum =  Integer.parseInt(request.getParameter("cmtpSum"));
+        String cmtbCd = request.getParameter("cmtbCd");
+        String cmtpDateStr = request.getParameter("cmtpDate"); 
+
+        
+
+        // CmtPayVO 객체 생성 및 값 설정
+        CmtPayVO cmtPayVO = new CmtPayVO();
+        cmtPayVO.setCmtpCd(cmtpCd);
+        cmtPayVO.setCmtpMh(cmtpMh);
+        cmtPayVO.setCmtpSum(cmtpSum);
+//        cmtPayVO.setCmtpDate();
+        cmtPayVO.setCmtbCd(cmtbCd);
+
+        try {
+            // 구매 정보 등록
+            cmtPayService.cmtPayInsert(cmtPayVO);
+            
+            // 구매 정보 등록에 성공하면 성공 메시지를 클라이언트에 보냄
+            response.getWriter().println("Success");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            response.getWriter().println("Error occurred: " + e.getMessage());
+        }
+    }
+}

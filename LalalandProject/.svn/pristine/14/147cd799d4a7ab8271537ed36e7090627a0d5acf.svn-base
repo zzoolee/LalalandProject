@@ -1,0 +1,142 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<%@ include file="../../mem_header.jsp" %>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/include/css/cmt.css">
+    <script>
+    $(function(){
+    	$("#buy_btn").on("click",function(){
+    		let ticketPrice = $(".ticketPrice").html();
+    		console.log("ticketPrice : " + ticketPrice);
+    		
+    		ticketPrice = ticketPrice.replaceAll(",","");
+    		
+    		$("input[name='ticketPrice']").val(ticketPrice);
+    		
+    		if(ticketPrice>0){
+    			$("#frm").submit();
+    		}else{
+    			alert("티켓을 선택해주세요");
+    		}
+    		
+    	});
+    	
+    	
+        // Ajax 요청 보내기
+        $.ajax({
+          type: "POST",
+          url: "<%=request.getContextPath()%>/cmt/main.do",
+          data: data,
+          success: function(response) {
+            console.log("성공.");
+            console.log(response); 
+          },
+          error: function(xhr, status, error) {
+            console.log("실패.", status, error);
+          }
+        });
+    });
+    </script>
+</head>
+<body>
+
+	<div class="WrapWidth">
+
+		<div class="section">
+			<div class="container pt-5">
+				<div class="row justify-content-center">
+					<div class="col-12 text-center">
+						<h2 class="pb-4">Choose ticket</h2>
+						<div class="section">
+							<input class="checkbox-ticket" type="radio" name="ticket"
+								id="ticket-1" value="cmt001"> <label for="ticket-1">
+								<span class="top-dots"> <span class="section dots">
+										<span></span> <span></span> <span></span> <span></span> <span></span>
+										<span></span> <span></span> <span></span> <span></span> <span></span>
+										<span></span> <span></span> <span></span> <span></span> <span></span>
+										<span></span> <span></span>
+								</span>
+							</span> <h4><span class="ticketName"> 정기권 </span> <span
+								class="ticketSort"> 대인
+							</span> </h4><span class="section dots"> <span></span> <span></span> <span></span>
+									<span></span> <span></span> <span></span> <span></span> <span></span>
+									<span></span> <span></span> <span></span> <span></span> <span></span>
+									<span></span> <span></span> <span></span> <span></span>
+							</span> <span class="section pt-4"> <i
+									class='uil uil-clock-two mt-3'></i>
+							</span> <span class="ticketPrice"> 180,000원 </span> <span class="bottom-dots">
+									<span class="section dots"> <span></span> <span></span>
+										<span></span> <span></span> <span></span> <span></span> <span></span>
+										<span></span> <span></span> <span></span> <span></span> <span></span>
+										<span></span> <span></span> <span></span> <span></span> <span></span>
+								</span>
+							</span>
+							</label>
+							<!--
+						-->
+							<input class="checkbox-ticket" type="radio" name="ticket"
+								id="ticket-2" value="cmt002"> <label for="ticket-2">
+								<span class="top-dots"> <span class="section dots">
+										<span></span> <span></span> <span></span> <span></span> <span></span>
+										<span></span> <span></span> <span></span> <span></span> <span></span>
+										<span></span> <span></span> <span></span> <span></span> <span></span>
+										<span></span> <span></span>
+								</span>
+							</span> <h4><span class="ticketName"> 정기권 </span> <span
+								class="ticketSort">청소년
+							</span> </h4><span class="section dots"> <span></span> <span></span> <span></span>
+									<span></span> <span></span> <span></span> <span></span> <span></span>
+									<span></span> <span></span> <span></span> <span></span> <span></span>
+									<span></span> <span></span> <span></span> <span></span>
+							</span> <span class="section pt-4"> <i
+									class='uil uil-clock-two mt-3'></i>
+							</span> <span class="ticketPrice"> 160,000원 </span> <span class="bottom-dots">
+									<span class="section dots"> <span></span> <span></span>
+										<span></span> <span></span> <span></span> <span></span> <span></span>
+										<span></span> <span></span> <span></span> <span></span> <span></span>
+										<span></span> <span></span> <span></span> <span></span> <span></span>
+								</span>
+							</span>
+							</label>
+							<!--
+						-->
+							<input class="checkbox-ticket" type="radio" name="ticket"
+								id="ticket-3" value="cmt003"> <label for="ticket-3">
+								<span class="top-dots"> <span class="section dots">
+										<span></span> <span></span> <span></span> <span></span> <span></span>
+										<span></span> <span></span> <span></span> <span></span> <span></span>
+										<span></span> <span></span> <span></span> <span></span> <span></span>
+										<span></span> <span></span>
+								</span>
+							</span> <h4><span class="ticketName"> 정기권 </span> <span
+								class="ticketSort">소인
+							</span> </h4><span class="section dots"> <span></span> <span></span> <span></span>
+									<span></span> <span></span> <span></span> <span></span> <span></span>
+									<span></span> <span></span> <span></span> <span></span> <span></span>
+									<span></span> <span></span> <span></span> <span></span>
+							</span> <span class="section pt-4"> <i
+									class='uil uil-clock-two mt-3'></i>
+							</span> <span class="ticketPrice">140,000원</span> <span class="bottom-dots">
+									<span class="section dots"> <span></span> <span></span>
+										<span></span> <span></span> <span></span> <span></span> <span></span>
+										<span></span> <span></span> <span></span> <span></span> <span></span>
+										<span></span> <span></span> <span></span> <span></span> <span></span>
+								</span>
+							</span>
+							</label>
+							<div class="w-100"></div>
+						<a href="${pageContext.request.contextPath}/views/ticket/cmtpay.jsp?cmtb_cd=<%= session.getAttribute("cmtb_cd") %>" class="btn mt-4 mb-5">
+    <i class="uil uil-ticket size-22 mr-2"></i>Buy Ticket
+</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<%@include file="../../footer.jsp"%>
+</body>
+</html>

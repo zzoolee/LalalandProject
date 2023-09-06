@@ -1,0 +1,58 @@
+package cmt.vo;
+
+public class CmtVO {
+	
+	private String cmtCd;
+	private String cmtName;
+	private String cmtPrice;
+	private String cmtSort;
+	
+	public CmtVO() {}
+
+	public CmtVO(String cmtCd, String cmtName, String cmtPrice, String cmtSort) {
+		super();
+		this.cmtCd = cmtCd;
+		this.cmtName = cmtName;
+		this.cmtPrice = cmtPrice;
+		this.cmtSort = cmtSort;
+	}
+
+	public String getCmtCd() {
+		return cmtCd;
+	}
+
+	public void setCmtCd(String cmtCd) {
+		this.cmtCd = cmtCd;
+	}
+
+	public String getCmtName() {
+		return cmtName;
+	}
+
+	public void setCmtName(String cmtName) {
+		this.cmtName = cmtName;
+	}
+
+	public String getCmtPrice() {
+		return cmtPrice;
+	}
+
+	public void setCmtPrice(String cmtPrice) {
+		this.cmtPrice = cmtPrice;
+	}
+
+	public String getCmtSort() {
+		return cmtSort;
+	}
+
+	public void setCmtSort(String cmtSort) {
+		this.cmtSort = cmtSort;
+	}
+
+	@Override
+	public String toString() {
+		return "CmtVO [cmtCd=" + cmtCd + ", cmtName=" + cmtName + ", cmtPrice=" + cmtPrice + ", cmtSort=" + cmtSort
+				+ "]";
+	}
+	
+}

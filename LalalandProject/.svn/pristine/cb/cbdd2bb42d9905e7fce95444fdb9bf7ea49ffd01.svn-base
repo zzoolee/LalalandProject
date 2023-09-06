@@ -1,0 +1,77 @@
+	var currentDate = new Date();
+
+	function updateCalendar() {
+	  var calendar = document.getElementById("calendar");
+
+	  calendar.getElementsByTagName("tbody")[0].innerHTML = "";
+
+	  var year = currentDate.getFullYear();
+	  var month = currentDate.getMonth() + 1;
+
+	  document.getElementById("YYYYMM").innerHTML = year + ". " + month;
+
+	  var daysInMonth = new Date(year, month, 0).getDate();
+
+	  var row, cell;
+	  var dayCount = 1;
+	  for (var i = 0; i < 6; i++) {
+	    row = calendar.insertRow();
+	    for (var j = 0; j < 7; j++) {
+	      cell = row.insertCell();
+	      if (i === 0 && j < new Date(year, month - 1).getDay()) {
+	        cell.innerHTML = "<span class='unable'></span>";
+	      } else if (dayCount > daysInMonth) {
+	        cell.innerHTML = "<span class='unable'></span>";
+	      } else {
+	        var dateString =
+	          year +
+	          (month < 10 ? "0" + month : month) +
+	          (dayCount < 10 ? "0" + dayCount : dayCount);
+	        if (currentDate > new Date(year, month - 1, dayCount)) {
+	          cell.innerHTML = "<span class='unable'>" + dayCount + "</span>";
+	        } else {
+	          cell.innerHTML =
+	            "<a href='javascript:void(0)' onclick='fn_playDate(" +
+	            dateString +
+	            ", this)'>" +
+	            dayCount +
+	            "</a>";
+	        }
+	        dayCount++;
+	      }
+	    }
+	  }
+	}
+
+	  function fn_playDate(date, element) {
+	    var selected = document.getElementsByClassName("selected");
+	    if (selected.length > 0) {
+	      selected[0].classList.remove("selected");
+	    }
+
+	    element.classList.add("selected");
+
+	    document.getElementById("selectedDate").innerHTML = "Selected date: " + date;
+
+	    console.log("Selected date:", date);
+	  }
+ // fn_next() 함수
+	    function fn_next() {
+	      // 선택한 날짜 가져오기
+	      var selectedDate = document.getElementById("selectedDate").innerText;
+	      
+	      // Ajax 요청으로 선택한 날짜를 서버로 전송
+	      $.ajax({
+	        url: "<%=request.getContextPath()%>/ticket/calendar.do?selectedDate="+selectedDate, // 서버로 요청을 보낼 URL을 설정합니다.
+	        method: "POST", // 요청 메소드
+	        data: { selectedDate: selectedDate }, // 선택한 날짜를 데이터로 전송
+	        success: function(response) {
+	          // 서버에서의 응답을 처리하는 코드를 작성
+	          console.log("날짜 선택이 성공적으로 전송되었습니다.");
+	        },
+	        error: function(error) {
+	          // 서버 요청에 실패한 경우 에러 처리 코드를 작성
+	          console.error("날짜 선택 전송에 실패했습니다.", error);
+	        }
+	      });
+	    }

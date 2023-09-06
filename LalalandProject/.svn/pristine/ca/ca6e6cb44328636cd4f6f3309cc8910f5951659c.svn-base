@@ -1,0 +1,143 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<%@ include file="../../mem_header.jsp" %>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/include/css/cmt.css">
+    <script>
+        $(document).ready(function () {
+            $(".buy-button").click(function () {
+                var cmtCd = "123";
+                var cmtName = "Sample Ticket";
+                var cmtPrice = 100;
+                var cmtSort = "Sample Sort";
+                var memId = "sampleUser";
+                var cmtbCd = "<%= session.getAttribute("cmtbCd") %>"; // 세션에서 cmtbCd 값을 가져옴
+
+                var data = {
+                    cmtCd: cmtCd,
+                    cmtName: cmtName,
+                    cmtPrice: cmtPrice,
+                    cmtSort: cmtSort,
+                    memId: memId,
+                    cmtbCd: cmtbCd // 서버로 전달할 cmtbCd 값을 추가
+                };
+
+                $.ajax({
+                    type: "POST",
+                    url: "cmt/main.do",
+                    data: data,
+                    success: function (response) {
+                        console.log(response); // 서버 응답을 콘솔에 출력
+                        alert("Ticket bought successfully!"); // 예제로 성공 시 알림 추가
+                    },
+                    error: function (xhr, status, error) {
+                        console.log("Error:", error); // 에러 발생 시 콘솔에 출력
+                        alert("Error occurred: " + error); // 에러 시 알림 추가
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+
+	<div class="WrapWidth">
+
+		<div class="section">
+			<div class="container pt-5">
+				<div class="row justify-content-center">
+					<div class="col-12 text-center">
+						<h2 class="pb-4">Choose ticket</h2>
+						<div class="section">
+							<input class="checkbox-ticket" type="radio" name="ticket"
+								id="ticket-1" value="cmt001"> <label for="ticket-1">
+								<span class="top-dots"> <span class="section dots">
+										<span></span> <span></span> <span></span> <span></span> <span></span>
+										<span></span> <span></span> <span></span> <span></span> <span></span>
+										<span></span> <span></span> <span></span> <span></span> <span></span>
+										<span></span> <span></span>
+								</span>
+							</span> <h4><span class="ticketName"> 정기권 </span> <span
+								class="ticketSort"> 대인
+							</span> </h4><span class="section dots"> <span></span> <span></span> <span></span>
+									<span></span> <span></span> <span></span> <span></span> <span></span>
+									<span></span> <span></span> <span></span> <span></span> <span></span>
+									<span></span> <span></span> <span></span> <span></span>
+							</span> <span class="section pt-4"> <i
+									class='uil uil-clock-two mt-3'></i>
+							</span> <span class="ticketPrice"> 180,000원 </span> <span class="bottom-dots">
+									<span class="section dots"> <span></span> <span></span>
+										<span></span> <span></span> <span></span> <span></span> <span></span>
+										<span></span> <span></span> <span></span> <span></span> <span></span>
+										<span></span> <span></span> <span></span> <span></span> <span></span>
+								</span>
+							</span>
+							</label>
+							<!--
+						-->
+							<input class="checkbox-ticket" type="radio" name="ticket"
+								id="ticket-2" value="cmt002"> <label for="ticket-2">
+								<span class="top-dots"> <span class="section dots">
+										<span></span> <span></span> <span></span> <span></span> <span></span>
+										<span></span> <span></span> <span></span> <span></span> <span></span>
+										<span></span> <span></span> <span></span> <span></span> <span></span>
+										<span></span> <span></span>
+								</span>
+							</span> <h4><span class="ticketName"> 정기권 </span> <span
+								class="ticketSort">청소년
+							</span> </h4><span class="section dots"> <span></span> <span></span> <span></span>
+									<span></span> <span></span> <span></span> <span></span> <span></span>
+									<span></span> <span></span> <span></span> <span></span> <span></span>
+									<span></span> <span></span> <span></span> <span></span>
+							</span> <span class="section pt-4"> <i
+									class='uil uil-clock-two mt-3'></i>
+							</span> <span class="ticketPrice"> 160,000원 </span> <span class="bottom-dots">
+									<span class="section dots"> <span></span> <span></span>
+										<span></span> <span></span> <span></span> <span></span> <span></span>
+										<span></span> <span></span> <span></span> <span></span> <span></span>
+										<span></span> <span></span> <span></span> <span></span> <span></span>
+								</span>
+							</span>
+							</label>
+							<!--
+						-->
+							<input class="checkbox-ticket" type="radio" name="ticket"
+								id="ticket-3" value="cmt003"> <label for="ticket-3">
+								<span class="top-dots"> <span class="section dots">
+										<span></span> <span></span> <span></span> <span></span> <span></span>
+										<span></span> <span></span> <span></span> <span></span> <span></span>
+										<span></span> <span></span> <span></span> <span></span> <span></span>
+										<span></span> <span></span>
+								</span>
+							</span> <h4><span class="ticketName"> 정기권 </span> <span
+								class="ticketSort">소인
+							</span> </h4><span class="section dots"> <span></span> <span></span> <span></span>
+									<span></span> <span></span> <span></span> <span></span> <span></span>
+									<span></span> <span></span> <span></span> <span></span> <span></span>
+									<span></span> <span></span> <span></span> <span></span>
+							</span> <span class="section pt-4"> <i
+									class='uil uil-clock-two mt-3'></i>
+							</span> <span class="ticketPrice">140,000원</span> <span class="bottom-dots">
+									<span class="section dots"> <span></span> <span></span>
+										<span></span> <span></span> <span></span> <span></span> <span></span>
+										<span></span> <span></span> <span></span> <span></span> <span></span>
+										<span></span> <span></span> <span></span> <span></span> <span></span>
+								</span>
+							</span>
+							</label>
+							<div class="w-100"></div>
+						<a href="${pageContext.request.contextPath}/views/ticket/cmtpay.jsp?cmtb_cd=<%= session.getAttribute("cmtb_cd") %>" class="btn mt-4 mb-5">
+    <i class="uil uil-ticket size-22 mr-2"></i>Buy Ticket
+</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<%@include file="../../footer.jsp"%>
+</body>
+</html>

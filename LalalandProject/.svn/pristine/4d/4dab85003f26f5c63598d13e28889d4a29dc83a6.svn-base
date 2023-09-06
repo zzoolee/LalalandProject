@@ -1,0 +1,123 @@
+<%@page import="lala.vo.attractionVO"%>
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+<%@include file="../../mem_header.jsp" %>
+    
+<%
+
+List<attractionVO> zone1 = (List<attractionVO>)request.getAttribute("zone1");
+List<attractionVO> zone2 = (List<attractionVO>)request.getAttribute("zone2");
+List<attractionVO> zone3 = (List<attractionVO>)request.getAttribute("zone3");
+List<attractionVO> zone4 = (List<attractionVO>)request.getAttribute("zone4");
+
+%>
+    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+        			<%
+						if(zone1.size() == 0) {
+					%>
+						<h2>운휴 정보가 존재하지 않습니다.</h2>
+					<%
+						} else {
+					%>		
+                    
+                    <%
+                    		for(attractionVO zn : zone1){	
+                    %>	
+
+<div style="display: inline-block; ">
+    <div style="width: auto; float: left;">
+        <table border="1" style="table-layout: auto; width: auto;  text-align: center;">
+            <colgroup>
+                <col width="22%" />
+                <col width="22%" />
+            </colgroup>
+           <th style="background-color: aqua;" colspan="2"> <%= zn.getZoneName() %>
+             <tr style="background-color: bisque;">
+                <td>어트랙션명</td>
+                <td>구분</td> 
+            </tr>
+            <tr>
+                <td><%= zn.getAtName() %></td>
+                <td><%= zn.getAtChk() %></td>
+            </tr>
+          </th>
+     </table>
+    </div>
+
+			<% 
+                    } // end for
+                    	for(attractionVO zn : zone2){
+
+			%>
+
+    <div style="width: auto; float: right;">
+        <table border="1" style="table-layout: auto; width: auto; text-align: center;">
+            <colgroup>
+                <col width="22%" />
+                <col width="22%" />
+            </colgroup>
+          <th style="background-color: aqua;" colspan="2"> <%=zn.getZoneName() %>
+             <tr style="background-color: bisque;">
+                <td>어트랙션명</td>
+                <td>구분</td>
+            </tr>
+             <tr>
+                <td><%= zn.getAtName() %></td>
+                <td><%= zn.getAtChk() %></td>
+            </tr>
+          </th>
+     </table>
+    </div>
+</div>
+				<%
+                		}
+                	}
+				%>
+
+
+
+<!-- <div style="display: inline-block;"> -->
+<!--     <div style="width: auto; float: left;"> -->
+<!--         <table border="1" style="table-layout: auto; width: auto;  text-align: center;"> -->
+<!--             <colgroup> -->
+<!--                 <col width="22%" /> -->
+<!--                 <col width="22%" /> -->
+<!--             </colgroup> -->
+<!--           <th style="background-color: aqua;" colspan="2"> 매직랜드 -->
+<!--              <tr style="background-color: bisque;"> -->
+<!--                 <td>어트랙션명</td> -->
+<!--                 <td>구분</td>  -->
+
+<!--             </tr> -->
+<!--           </th> -->
+<!--      </table> -->
+<!--     </div> -->
+
+<!--     <div style="width: auto; float: right;"> -->
+<!--         <table border="1" style="table-layout: auto; width: auto; text-align: center;"> -->
+<!--             <colgroup> -->
+<!--                 <col width="22%" /> -->
+<!--                 <col width="22%" /> -->
+<!--             </colgroup> -->
+<!--           <th style="background-color: aqua;" colspan="2"> 매직랜드 -->
+<!--              <tr style="background-color: bisque;"> -->
+<!--                 <td>어트랙션명</td> -->
+<!--                 <td>구분</td> -->
+<!--             </tr> -->
+<!--           </th> -->
+<!--      </table> -->
+<!--     </div> -->
+<!-- </div> -->
+
+<%@include file="../../footer.jsp" %>

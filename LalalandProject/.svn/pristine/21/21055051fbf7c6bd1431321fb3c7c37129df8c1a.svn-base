@@ -1,0 +1,45 @@
+package cmt.dao;
+
+import java.util.List;
+
+import cmt.vo.CmtBkVO;
+import cmt.vo.CmtBuyVO;
+import cmt.vo.CmtVO;
+import comm.dao.MyBatisDao;
+
+public class CmtDao extends MyBatisDao {
+    
+    private static CmtDao instance;
+    
+    private CmtDao() {}
+    
+    public static CmtDao getInstance() {
+        if (instance == null)
+            instance = new CmtDao();
+        return instance;
+    }
+    
+    public CmtVO getTicket(String cmtCd) {
+        return selectOne("cmt.getCmt", cmtCd);
+    }
+    
+    public int createCmt(CmtVO cmtVO) {
+        return insert("cmt.createCmt", cmtVO);
+    }
+    
+    public CmtVO getCmtByCd(String cmtCd) {
+        return selectOne("cmt.getCmtByCd", cmtCd);
+    }
+    
+    public List<CmtVO> getAllCmt() {
+        return selectList("cmt.getAllCmt");
+    }
+    
+    public int cmtBuyInsert(CmtBuyVO cmtBuyVO) {
+        return insert("cmt.cmtBuyInsert", cmtBuyVO);
+    }
+    
+    public int cmtBkInsert(CmtBkVO cmtBkVO) {
+        return insert("cmt.cmtBkInsert", cmtBkVO);
+    }
+}

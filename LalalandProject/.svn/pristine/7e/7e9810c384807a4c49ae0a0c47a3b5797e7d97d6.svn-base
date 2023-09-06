@@ -1,0 +1,61 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+.spacer {
+	height: 20px;
+}
+
+#contents {
+	padding: 60px;
+	background-color: #eff1f0;
+}
+
+.form-horizontal {
+	margin-left: 20px;
+}
+
+.form-group {
+	display: flex;
+	align-items: center;
+}
+
+.form-group label {
+	width: 70px;
+}
+
+.form-group .form-control {
+	flex: 1;
+	margin-left: 10px;
+}
+</style>
+
+
+</head>
+<%@include file="../../header.jsp"%>
+<body>
+	<div class="container">
+		<h4 style="text-align: left;">아이디 찾기</h4>
+		<hr>
+
+		<form name="idFindForm" method="post" action="/LalalandProject/FindId" id="idFindForm">
+			<div class="form-group">
+				<label for="name" class="control-label col-sm-2">이름 <strong class="sound_only"> </strong></label>
+				<input type="text" class="form-control" id="name" name="mem_name">
+
+				<label for="mail" class="control-label col-sm-2">이메일 <strong class="sound_only"> </strong></label>
+				<input type="email" class="form-control" id="mail" name="mem_email" required pattern="[0-9a-zA-Z]+@[0-9a-zA-Z]+(\.[a-z]+){1,2}" onblur="validateEmail()">
+
+				<div class="chk-box">
+					<input type="submit" class="idfindbtn" id="idFindForm" value="아이디찾기">
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+</html>
+<%@include file="../../footer.jsp"%>

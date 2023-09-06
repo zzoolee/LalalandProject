@@ -1,0 +1,53 @@
+package cmt.controller;
+
+import cmt.service.CmtService;
+import cmt.vo.CmtBuyVO;
+import cmt.vo.CmtBkVO;
+
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+
+@WebServlet("/cmt/main.do")
+public class CmtController extends HttpServlet {
+
+    private CmtService cmtService = new CmtService();
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String cmtCd = request.getParameter("cmtCd");
+        String cmtName = request.getParameter("cmtName");
+        int cmtPrice = Integer.parseInt(request.getParameter("cmtPrice"));
+        String cmtSort = request.getParameter("cmtSort");
+        String memId = request.getParameter("memId");
+        int cmtNum = 1; // 티켓 수량을 항상 1개로 설정
+
+        // 세션에서 cmtbCd 값을 가져옴
+        HttpSession session = request.getSession();
+        String cmtbCd = (String) session.getAttribute("cmtbCd");
+
+        // CmtBuyVO 객체 생성 및 값 설정
+        CmtBuyVO cmtBuyVO = new CmtBuyVO();
+        cmtBuyVO.setMemId(memId);
+        cmtBuyVO.setCmtbCd(cmtbCd);
+
+        // CmtBkVO 객체 생성 및 값 설정
+        CmtBkVO cmtBkVO = new CmtBkVO();
+        cmtBkVO.setCmtCd(cmtCd);
+        cmtBkVO.setCmtNum(cmtNum);
+        cmtBkVO.setCmtbCd(cmtbCd); // CmtBkVO에도 cmtbCd 설정
+
+     // 구매 정보 등록
+        try {
+            cmtService.cmtBuyInsert(cmtBuyVO);
+            // 장바구니 정보 등록
+            cmtService.cmtBkInsert(cmtBkVO);
+            response.getWriter().println("Success");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            response.getWriter().println("Error occurred: " + e.getMessage());
+        }
+    }
+}

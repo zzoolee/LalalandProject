@@ -1,0 +1,48 @@
+package cmt.service;
+
+import cmt.vo.CmtBuyVO;
+import comm.util.MyBatisUtil;
+
+import org.apache.ibatis.session.SqlSession;
+
+import cmt.vo.CmtBkVO;
+
+public class CmtService {
+    
+    private static CmtService instance;
+    
+    // 싱글톤 패턴을 위한 생성자
+    public CmtService() {
+    }
+    
+    public static CmtService getInstance() {
+        if (instance == null) {
+            instance = new CmtService();
+        }
+        return instance;
+    }
+    
+    
+    public void cmtBuyInsert(CmtBuyVO cmtBuyVO) {
+        try (SqlSession sqlSession = MyBatisUtil.getInstance()) {
+            sqlSession.insert("cmt.cmtBuyInsert", cmtBuyVO);
+            sqlSession.commit();
+        } catch (Exception e) {
+            e.printStackTrace(); // 예외 메시지를 콘솔에 출력
+            throw new RuntimeException("cmtBuyInsert 메서드에서 예외 발생", e);
+        }
+    }
+
+
+
+    public void cmtBkInsert(CmtBkVO cmtBkVO) throws ClassNotFoundException {
+        try (SqlSession sqlSession = MyBatisUtil.getInstance()) {
+            sqlSession.insert("cmt.cmtBkInsert", cmtBkVO);
+            sqlSession.commit();
+        } catch (Exception e) {
+            // 예외를 호출하는 쪽으로 던져줌
+            throw new ClassNotFoundException("cmtBkInsert 메서드에서 예외 발생", e);
+        }
+    }
+
+}

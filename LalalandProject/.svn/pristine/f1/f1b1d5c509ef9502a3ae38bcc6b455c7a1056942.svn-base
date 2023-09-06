@@ -1,0 +1,34 @@
+package ticket.controller;
+
+
+import javax.servlet.annotation.WebServlet;
+
+@WebServlet("/mypage/ticket.do")
+public class MyTicketController {
+	
+	
+//	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//		
+//		HttpSession httpSession = req.getSession();
+//		String memId = (String) httpSession.getAttribute("loginCode");
+//		
+//		TicketService ticketService = TicketService.getInstance();
+//		
+//		String tkbCd = req.getParameter("tkbCd");
+//		String tkpCd = req.getParameter("tkpCd");
+//		if(tkbCd != null && tkpCd != null) {
+//			TicketVO ticketVO = new TicketVO();
+//			ticketVO.setTkbCd(tkbCd);
+//			ticketVO.setTkpCd(tkpCd);
+//		}
+//		
+//		List<TicketVO> myTkList = ticketService.myTk(memId);
+//		
+//		req.setAttribute("myTkList", myTkList);
+//		req.getRequestDispatcher("/views/ticket/myticket.jsp").forward(req, resp);
+//	}
+//	
+//	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//		doGet(req, resp);
+//	}
+}

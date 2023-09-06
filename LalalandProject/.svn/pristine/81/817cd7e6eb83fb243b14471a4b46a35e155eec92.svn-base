@@ -1,0 +1,86 @@
+<%@page import="cmt.vo.CmtBkVO"%>
+<%@page import="cmt.vo.CmtBuyVO"%>
+<%@page import="cmt.service.CmtService"%>
+<%@page import="cmt.vo.CmtPayVO"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+request.setCharacterEncoding("UTF-8");
+
+String memId  = request.getParameter("memId");
+String CMT001  = request.getParameter("CMT001");
+String CMT002  = request.getParameter("CMT002"); 
+String CMT003  = request.getParameter("CMT003"); 
+String cmtpMh  = request.getParameter("cmtpMh");
+String ticketprice  = request.getParameter("ticketprice");
+
+out.print("CMT001 : " + CMT001 + "<br />");
+out.print("CMT002 : " + CMT002 + "<br />");
+out.print("CMT003 : " + CMT003 + "<br />");
+
+out.print("memId : " + memId + "<br />");
+
+out.print("cmtpMh : " + cmtpMh + "<br />");
+
+out.print("ticketprice : " + ticketprice + "<br />");
+
+CmtService cmtService = CmtService.getInstance();
+
+//1) CMT_BUY(memId)
+CmtBuyVO cmtBuyVO = new CmtBuyVO();
+cmtBuyVO.setMemId(memId);
+
+int result = cmtService.cmtBuyInsert(cmtBuyVO);
+
+//2) CMT_BK(cmtbCd(1)), cmtCd, cmtNum, cmtDate)
+
+if(!CMT001.equals("0")){
+	CmtBkVO cmtBkVO = new CmtBkVO();
+	cmtBkVO.setTkbCd(cmtBuyVO.getCmtbCd());
+	cmtBkVO.setTkCd("CMT001");
+	cmtBkVO.setTkNum(Integer.parseInt(CMT001));
+	SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");//20230731
+	Date date = formatter.parse(cmtDate);
+	cmtBkVO.setTkDate(date);
+			
+	result += cmtService.cmtBkInsert(cmtBkVO);
+}
+if(!CMT002.equals("0")){
+	CmtBkVO cmtBkVO = new CmtBkVO();
+	cmtBkVO.setCmtbCd(cmtBuyVO.getCmtbCd());//실행전 tkbCd = null이지만 실행 후 tkbCd = 2됨(selectKey에 의해서..)
+	cmtBkVO.setCmtCd("CMT002");
+	cmtBkVO.setCmtNum(Integer.parseInt(CMT002));
+	SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");//20230731
+	Date date = formatter.parse(cmtDate);
+	cmtBkVO.setCmtDate(date);
+			
+	result += cmtService.cmtBkInsert(cmtBkVO);
+}
+if(!CMT003.equals("0")){
+	CmtBkVO cmtBkVO = new CmtBkVO();
+	cmtBkVO.setCmtbCd(cmtBuyVO.getCmtbCd());
+	cmtBkVO.setCmtCd("CMT003");
+	cmtBkVO.setCmtNum(Integer.parseInt(CMT003));
+	SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");//20230731
+	Date date = formatter.parse(cmtDate);
+	cmtBkVO.setCmtDate(date);
+			
+	result += cmtService.cmtBkInsert(cmtBkVO);
+}
+
+//3) CMT_PAY(cmtpMh, cmtpSum,cmtbCd(1))
+CmtPayVO cmtPayVO = new CmtPayVO();
+cmtPayVO.setcmtpMh(cmtpMh);
+cmtPayVO.setcmtpSum(Integer.parseInt(ticketprice));
+cmtPayVO.setcmtbCd(cmtBuyVO.getCmtbCd());
+
+result += cmtService.cmtPayInsert(cmtPayVO);
+
+out.print("result : " + result);
+
+response.sendRedirect(request.getContextPath() + "/views/ticket/pay02.jsp");
+%>
+
+

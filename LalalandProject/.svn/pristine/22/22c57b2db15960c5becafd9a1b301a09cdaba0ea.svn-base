@@ -1,0 +1,67 @@
+package lala.service;
+
+import java.util.List;
+
+import lala.dao.INewsDao;
+import lala.dao.newsDaoImpl;
+import lala.vo.NewsVO;
+
+  
+public class NewsServiceImpl implements INewsService {
+
+	private static INewsService newsService;
+	
+	private INewsDao newsDao;
+	
+	private NewsServiceImpl() {
+		
+		newsDao = newsDaoImpl.getInstance();
+		
+	}
+	
+	public static INewsService getInstance() {
+		if(newsService ==  null) {
+			newsService = new NewsServiceImpl();
+		}
+		return newsService;
+	}
+	
+	
+	@Override
+	public int insertNewsSV(NewsVO nv) {
+ 		return newsDao.insertNews(nv);
+ 		
+	}
+
+	@Override
+	public int updateNewsSV(NewsVO nv) {
+ 		return newsDao.updateNews(nv);
+	}
+
+	
+	@Override
+	public int deleteNewsSV(String notiCd) {
+ 		return newsDao.deleteNews(notiCd);
+ 		
+	}
+
+	@Override
+	public List<NewsVO> getAllNewsSV() {
+
+		return newsDao.getAllNews();
+	}
+
+	@Override
+	public List<NewsVO> searchNewsSV(String Keyword) {
+		return newsDao.searchNews(Keyword);
+	
+	
+	}
+
+	@Override
+	public NewsVO getNewsSV(String notiCd) {
+		
+		return  newsDao.getNews(notiCd);
+	}
+
+}

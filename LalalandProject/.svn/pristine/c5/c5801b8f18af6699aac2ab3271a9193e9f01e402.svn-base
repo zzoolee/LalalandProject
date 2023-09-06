@@ -1,0 +1,52 @@
+package lala.controller;
+
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+ import lala.service.INewsService;
+import lala.service.NewsServiceImpl;
+import lala.vo.NewsVO;
+
+@WebServlet(value = "/news/udetail.do")	
+public class UserDetailNews extends HttpServlet{
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	
+		String notiCd = req.getParameter("notiCd");
+	
+		//1. 서비스 생성
+		INewsService newsService = NewsServiceImpl.getInstance();
+	
+		
+		//2.뉴스공지 내용 조회
+		NewsVO nv  = newsService.getNewsSV(notiCd);
+
+		
+		//3. 요청객체에 데이터 저장 
+		req.setAttribute("nv", nv);
+		
+		
+		//4. 뉴스 디테일로 전달
+		req.getRequestDispatcher("/views/useInfo/UserNewsDetail.jsp").forward(req, resp);
+	
+	}
+	
+	
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+
+	}
+	
+	
+	
+	
+}

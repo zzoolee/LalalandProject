@@ -1,0 +1,80 @@
+package ticket.vo;
+
+import java.util.Date;
+
+public class TicketPayVO {
+	
+	private String tkpCd;
+	private String tkpMh;
+	private int tkpSum;
+	private String tkpChk;
+	private Date tkpDate;
+	private String tkbCd;
+	
+	public TicketPayVO() {}
+	
+	public TicketPayVO(String tkpCd, String tkpMh, int tkpSum, String tkpChk, Date tkpDate, String tkbCd) {
+		this.tkpCd = tkpCd;
+		this.tkpMh = tkpMh;
+		this.tkpSum = tkpSum;
+		this.tkpChk = tkpChk;
+		this.tkpDate = tkpDate;
+		this.tkbCd = tkbCd;
+	}
+
+	public String getTkpCd() {
+		return tkpCd;
+	}
+
+	public void setTkpCd(String tkpCd) {
+		this.tkpCd = tkpCd;
+	}
+
+	public String getTkpMh() {
+		return tkpMh;
+	}
+
+	public void setTkpMh(String tkpMh) {
+		this.tkpMh = tkpMh;
+	}
+
+	public int getTkpSum() {
+		return tkpSum;
+	}
+
+	public void setTkpSum(int tkpSum) {
+		this.tkpSum = tkpSum;
+	}
+
+	public String getTkpChk() {
+		return tkpChk;
+	}
+
+	public void setTkpChk(String tkpChk) {
+		this.tkpChk = tkpChk;
+	}
+
+	public Date getTkpDate() {
+		return tkpDate;
+	}
+
+	public void setTkpDate(Date tkpDate) {
+		this.tkpDate = tkpDate;
+	}
+
+	public String getTkbCd() {
+		return tkbCd;
+	}
+
+	public void setTkbCd(String tkbCd) {
+		this.tkbCd = tkbCd;
+	}
+
+	@Override
+	public String toString() {
+		return "TkPayVO [tkpCd=" + tkpCd + ", tkpMh=" + tkpMh + ", tkpSum=" + tkpSum + ", tkpChk=" + tkpChk
+				+ ", tkpDate=" + tkpDate + ", tkbCd=" + tkbCd + "]";
+	}
+	
+	
+}

@@ -1,0 +1,104 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+.spacer {
+	height: 20px;
+}
+
+#contents {
+	padding: 60px;
+	background-color: #eff1f0;
+}
+
+.form-horizontal {
+	margin-left: 20px;
+}
+
+.form-group {
+	display: flex;
+	align-items: center;
+}
+
+.form-group label {
+	width: 70px;
+}
+
+.form-group .form-control {
+	flex: 1;
+	margin-left: 10px;
+}
+</style>
+
+
+</head>
+<%@include file="../../adm_header.jsp"%>
+<body>
+	<div class="container">
+		<h4 style="text-align: left;">아이디 찾기</h4>
+		<hr>
+
+		<form name="idFindForm" method="post" action="/LalalandProject/FindId"
+			id="idFindForm">
+			<div class="form-group">
+				<label for="name" class="control-label col-sm-2">이름 <strong
+					class="sound_only"> </strong></label> <input type="text"
+					class="form-control" id="name" name="mem_name">
+					 <label
+					for="mail" class="control-label col-sm-2">이메일 <strong
+					class="sound_only"> </strong></label> <input type="email"
+					class="form-control" id="mail" name="mem_email" required
+					pattern="[0-9a-zA-Z]+@[0-9a-zA-Z]+(\.[a-z]+){1,2}"
+					onblur="validateEmail()">
+
+				<div class="chk-box">
+					<input type="submit" class="idfindbtn" id="idFindForm"
+						value="아이디찾기">
+				</div>
+			</div>
+		</form>
+
+
+
+
+
+		<!-- action속성이 생략되어진 상태 : 생략되었을 때 나 자신(join.jsp)페이지로 되돌아 옴 -->
+		<!-- <form class="form-horizontal" method="post" onsubmit="valid()">
+			<div class="form-group">
+				<label for="name">이름</label>
+				<div class="col-sm-4">
+					<input type="text" class="form-control" id="name" name="mem_name"
+						required pattern="[가-힣]{2,5}">
+				</div>
+			</div>
+			
+
+
+			<div class="form-group">
+				<label for="mail">이메일</label>
+				<div class="col-sm-4">
+					<input type="email" class="form-control" id="mail" name="mem_email"
+						required pattern="[0-9a-zA-Z]+@[0-9a-zA-Z]+(\.[a-z]+){1,2}"
+						onblur="validateEmail()">
+				</div>
+			</div>
+
+			<div> -->
+		<!-- 				<button id="FindBtn" class="btn btn-default">아이디 찾기</button> -->
+		<!-- <form class="form-horizontal" method="post" action="FindId" onsubmit="valid()"></form> -->
+		<!--<input type="submit" class="findbtn" id="idfindform" value="아이디 찾기">
+				<div class="spacer"></div>-->
+		<!-- 빈 공간을 만들기 위한 spacer 클래스 -->
+		<!--</div> -->
+		</form>
+	</div>
+
+
+
+</body>
+</html>
+<%@include file="../../footer.jsp"%>

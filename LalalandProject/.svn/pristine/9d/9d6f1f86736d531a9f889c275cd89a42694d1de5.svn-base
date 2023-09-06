@@ -1,0 +1,70 @@
+package cmt.vo;
+
+import java.util.Date;
+
+public class CmtPayVO {
+	
+	private String cmtpCd;
+	private String cmtpMh;
+	private int cmtpSum;
+	private Date cmtpDate;
+	private String cmtbCd;
+	
+	public CmtPayVO() {}
+	
+	public CmtPayVO(String cmtpCd, String cmtpMh, int cmtpSum, Date cmtpDate, String cmtbCd) {
+		this.cmtpCd = cmtpCd;
+		this.cmtpMh = cmtpMh;
+		this.cmtpSum = cmtpSum;
+		this.cmtpDate = cmtpDate;
+		this.cmtbCd = cmtbCd;
+	}
+
+	public String getCmtpCd() {
+		return cmtpCd;
+	}
+
+	public void setCmtpCd(String cmtpCd) {
+		this.cmtpCd = cmtpCd;
+	}
+
+	public String getCmtpMh() {
+		return cmtpMh;
+	}
+
+	public void setCmtpMh(String cmtpMh) {
+		this.cmtpMh = cmtpMh;
+	}
+
+	public int getCmtpSum() {
+		return cmtpSum;
+	}
+
+	public void setCmtpSum(int cmtpSum) {
+		this.cmtpSum = cmtpSum;
+	}
+
+	public Date getCmtpDate() {
+		return cmtpDate;
+	}
+
+	public void setCmtpDate(Date cmtpDate) {
+		this.cmtpDate = cmtpDate;
+	}
+
+	public String getCmtbCd() {
+		return cmtbCd;
+	}
+
+	public void setCmtbCd(String cmtbCd) {
+		this.cmtbCd = cmtbCd;
+	}
+
+	@Override
+	public String toString() {
+		return "CmtPayVO [cmtpCd=" + cmtpCd + ", cmtpMh=" + cmtpMh + ", cmtpSum=" + cmtpSum + ", cmtpDate=" + cmtpDate
+				+ ", cmtbCd=" + cmtbCd + "]";
+	}
+	
+	
+}

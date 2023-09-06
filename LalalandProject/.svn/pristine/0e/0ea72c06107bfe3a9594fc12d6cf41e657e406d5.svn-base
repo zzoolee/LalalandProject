@@ -1,0 +1,23 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.DriverManager"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	//String uId = request.getParameter("uId");
+	String uName = request.getParameter("uName");
+	String uEmail = request.getParameter("uEmail");
+	
+	Class.forName("oracle.jdbc.driver.OracleDriver");
+	String url = "jdbc:oracle:thin:@112.220.114.130:1521:xe";
+	Connection conn = DriverManager.getConnection(url, "team2_202304M", "java");
+	Statement stmt = conn.createStatement();
+// 	String sql = "select mem_id from member "
+// 				+ "where mem_id = '" + uId + "'";
+	
+	String sql = "select mem_id from member where mem_name = '"+ uName + "' and mem_email='" + uEmail + "'";
+	ResultSet rs = stmt.executeQuery(sql);
+	session.setAttribute("resultSet", rs);
+%>
+		

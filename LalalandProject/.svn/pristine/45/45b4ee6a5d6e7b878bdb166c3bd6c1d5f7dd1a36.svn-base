@@ -1,0 +1,187 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<%@include file="../../mem_header.jsp"%>
+<meta charset="UTF-8">
+
+<link rel="stylesheet" href="${pageContext.request.contextPath}/include/css/tkbuy.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/include/js/tkbuy.js"></script>
+
+
+
+
+
+<!-- </script> -->
+</head>
+<body>
+<script>
+	 let totalPrice = 0;
+	
+	 
+	</script>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<form id="frm" action="${pageContext.request.contextPath}/ticket/pay.do" method="post"></form>
+	<div class="WrapWidth">
+		<div class="cart_table">
+			<p>티켓 결제</p>
+
+			<ul class="cart_list">
+				<li>권종 선택</li>
+				<li>
+
+					<div class="item_detail">
+						<img src="../../images/ticket/ticket03.jpg">
+						<p class="name">
+							<strong>자유 이용권</strong>
+						</p>
+						<p class="txt">A.대인</p>
+					</div>
+					<div class="opt_info">
+						<strong class="price_unit">48,000</strong>원
+						<div class="price_btn">
+							<input type="button" value="-" class="minus_btn"> <input
+								type="text" value="0" class="number"> <input
+								type="button" value="+" class="plus_btn">
+						</div>
+						<div class="total_p">
+							<strong class="price_amount"></strong>원 <span class="del_li_btn"></span>
+						</div>
+					</div>
+				</li>
+
+				<li>
+
+					<div class="item_detail">
+						<img src="../../images/ticket/ticket03.jpg">
+						<p class="name">
+							<strong>자유이용권</strong>
+						</p>
+						<p class="txt">B. 소인</p>
+					</div>
+					<div class="opt_info">
+						<strong class="price_unit">36,000</strong>원
+						<div class="price_btn">
+							<input type="button" value="-" class="minus_btn"> <input
+								type="text" value="0" class="number"> <input
+								type="button" value="+" class="plus_btn">
+						</div>
+						<div class="total_p">
+							<strong class="price_amount"></strong>원 <span class="del_li_btn"></span>
+						</div>
+					</div>
+
+				</li>
+				<li>
+
+					<div class="item_detail">
+						<img src="../../images/ticket/ticket02.jpg">
+						<p class="name">
+							<strong>BIG5</strong>
+						</p>
+						<p class="txt">A. 대인</p>
+					</div>
+					<div class="opt_info">
+						<strong class="price_unit">35,000</strong>원
+						<div class="price_btn">
+							<input type="button" value="-" class="minus_btn"> <input
+								type="text" value="0" class="number"> <input
+								type="button" value="+" class="plus_btn">
+						</div>
+						<div class="total_p">
+							<strong class="price_amount"></strong>원 <span class="del_li_btn"></span>
+						</div>
+					</div>
+
+				</li>
+				<li>
+
+					<div class="item_detail">
+						<img src="../../images/ticket/ticket02.jpg">
+						<p class="name">
+							<strong>BIG5</strong>
+						</p>
+						<p class="txt">B. 소인</p>
+					</div>
+					<div class="opt_info">
+						<strong class="price_unit">28,000</strong>원
+						<div class="price_btn">
+							<input type="button" value="-" class="minus_btn"> <input
+								type="text" value="0" class="number"> <input
+								type="button" value="+" class="plus_btn">
+						</div>
+						<div class="total_p">
+							<strong class="price_amount"></strong>원 <span class="del_li_btn"></span>
+						</div>
+					</div>
+
+				</li>
+				<li>
+
+					<div class="item_detail">
+						<img src="../../images/ticket/ticket01.jpg">
+						<p class="name">
+							<strong>BIG3</strong>
+						</p>
+						<p class="txt">A. 대인</p>
+					</div>
+					<div class="opt_info">
+						<strong class="price_unit">22,000</strong>원
+						<div class="price_btn">
+							<input type="button" value="-" class="minus_btn"> <input
+								type="text" value="0" class="number"> <input
+								type="button" value="+" class="plus_btn">
+						</div>
+						<div class="total_p">
+							<strong class="price_amount"></strong>원 <span class="del_li_btn"></span>
+						</div>
+					</div>
+
+				</li>
+				<li>
+
+					<div class="item_detail">
+						<img src="../../images/ticket/ticket01.jpg">
+						<p class="name">
+							<strong>BIG3</strong>
+						</p>
+						<p class="txt">B. 소인</p>
+					</div>
+					<div class="opt_info">
+						<strong class="price_unit">15,000</strong>원
+						<div class="price_btn">
+							<input type="button" value="-" class="minus_btn"> <input
+								type="text" value="0" class="number"> <input
+								type="button" value="+" class="plus_btn">
+						</div>
+						<div class="total_p">
+							<strong class="price_amount"></strong>원 <span class="del_li_btn"></span>
+						</div>
+					</div>
+
+				</li>
+			</ul>
+
+			<div class="cart_total_area">
+				<p>결제 정보</p>
+
+				<div class="cart_total_price">
+					<p>
+						총 결제금액 <strong class="item_price">0</strong>원
+					</p>
+
+				</div>
+			</div>
+
+			<div class="btn_box">
+				 <a href="http://localhost:8888/LalalandProject/views/ticket/ticketpay.jsp"><button type="button" id="buy_btn" class="btn black-btn">결제</button></a>
+			</div>
+		</div>
+	</div>
+	<%@include file="../../footer.jsp"%>
+</body>
+
+</html>

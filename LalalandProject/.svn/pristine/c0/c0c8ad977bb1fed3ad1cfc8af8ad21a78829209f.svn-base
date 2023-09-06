@@ -1,0 +1,40 @@
+package ticket.service;
+
+import org.apache.ibatis.session.SqlSession;
+import comm.util.MyBatisUtil;
+import ticket.vo.TicketBkVO;
+import ticket.vo.TicketBuyVO;
+
+public class TicketService {
+
+    private static TicketService instance;
+    
+    // 싱글톤 패턴을 위한 생성자
+    public TicketService() {
+    }
+    
+    public static TicketService getInstance() {
+        if (instance == null) {
+            instance = new TicketService();
+        }
+        return instance;
+    }
+    
+    public void tkBuyInsert(TicketBuyVO ticketBuyVO) {
+        try (SqlSession sqlSession = MyBatisUtil.getInstance()) {
+            sqlSession.insert("ticket.tkBuyInsert", ticketBuyVO);
+            sqlSession.commit();
+        } catch (Exception e) {
+            throw new RuntimeException("실패.", e);
+        }
+    }
+
+    public void tkBkInsert(TicketBkVO ticketBkVO) {
+        try (SqlSession sqlSession = MyBatisUtil.getInstance()) {
+            sqlSession.insert("ticket.tkBkInsert", ticketBkVO);
+            sqlSession.commit();
+        } catch (Exception e) {
+            throw new RuntimeException("실패.", e);
+        }
+    }
+}
